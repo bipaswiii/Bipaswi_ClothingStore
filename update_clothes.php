@@ -1,0 +1,82 @@
+<?php
+include('database.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Add Clothes</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<?php include ('navbar.php'); ?>
+<?php
+$id =$_GET['id'];
+$query="select * from clothes where id='$id'";
+$result =$conn ->query($query);
+$data = $result ->fetch_assoc();
+
+?>
+<section class="vh-150 bg-image"
+  style="background-image: url('clothing4.jpg');background-repeat:no-repeat; background-size:100% auto; background-position:ceter top; background-attachment:fixed; height:900px">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6" style="margin:40px">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Update Clothes</h2>
+
+              <form method="POST" action="action.php">
+
+                
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example3cg" class="form-control form-control-lg" name="typeofclothes" value="<?php echo $data['type']; ?>"/>
+                  <label class="form-label" for="form3Example3cg">Type of Clothes</label>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example3cg" class="form-control form-control-lg" name="title" value="<?php echo $data['title']; ?>" />
+                  <label class="form-label" for="form3Example3cg">Title</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example4cg" class="form-control form-control-lg" name="price" value="<?php echo $data['price']; ?>"/>
+                  <label class="form-label" for="form3Example4cg">Price</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example4cdg" class="form-control form-control-lg" name="size" value="<?php echo $data['size']; ?>"/>
+                  <label class="form-label" for="form3Example4cdg">Size</label>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example4cdg" class="form-control form-control-lg" name="material" value="<?php echo $data['material']; ?>" />
+                  <label class="form-label" for="form3Example4cdg">Materials</label>
+                </div>
+                
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit" name="updateclothes"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4  text-body">Update</button>
+                </div>
+                <input type="hidden" name="id" value="<?php echo $data['id'];?>" />
+
+                
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
